@@ -53,7 +53,7 @@ class Article(models.Model):
     # django.contrib.auth: django内置应用, 专门用于处理网站用户的注册登录等流程, User是已经写好的用户模型
     # 一篇文章一个作者,一个作者多篇文章, 一对多关系, 使用ForeignKey
     # 注: 在创建article之间,先创建User-->python manage.py createsuperuser
-    author =models.ForeignKey(User)
+    author = models.ForeignKey(User)
 
     objects = models.Manager()
 

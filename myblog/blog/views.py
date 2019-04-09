@@ -1,7 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-# from django.http import HttpResponse
-from .models import Article, Category
 import markdown
+
+from django.shortcuts import render, get_object_or_404
+from comments.forms import CommentForm
+from .models import Article, Category
+# from django.shortcuts import render, get_object_or_404
+# from django.http import HttpResponse
+# from .models import Article, Category
+# import markdown
+# from ..comments.forms import CommentForm
 # Create your views here.
 
 
@@ -24,7 +30,14 @@ def detail(request, pk):
                                          'markdown.extensions.codehilite',
                                          'markdown.extensions.toc',
                                      ])
-    return render(request, 'blog/detail.html', context={'article': article})
+    form = CommentForm()
+    comment_list = article.comment_set.all()
+    context = {
+        "article": article,
+        "form": form,
+        "comment_list": comment_list,
+    }
+    return render(request, 'blog/detail.html', context=context)
 
 
 # 归档功能
