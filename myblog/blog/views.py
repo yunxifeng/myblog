@@ -13,6 +13,7 @@ from .models import Article, Category
 
 # 主页
 def index(request):
+    # 排序也可在models.py内实现(通过内部类class Meta)
     article_list = Article.objects.all().order_by('-created_time')
     return render(request, 'blog/index.html', context={'article_list': article_list})
 
